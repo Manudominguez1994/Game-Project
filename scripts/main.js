@@ -6,7 +6,7 @@ const restartBtnNode = document.querySelector("#btn-restart");
 const startScreenNode = document.querySelector("#start-screen");
 const gameScreenNode = document.querySelector("#game-screen");
 const gameOverScreenNode = document.querySelector("#gameover-screen");
-const gameBoxNode = document.querySelector("#game-box")
+const gameBoxNode = document.querySelector("#game-box");
 
 let gameObj = null;
 
@@ -15,10 +15,9 @@ let gameObj = null;
 function startGame() {
   startScreenNode.style.display = "none";
   gameScreenNode.style.display = "flex";
-  
+
   gameObj = new Game();
   gameObj.gameLoop();
-  
 }
 
 // function restartGame() {
@@ -34,4 +33,4 @@ startBtnNode.addEventListener("click", startGame);
 
 document.addEventListener("keydown", (event) => {
   gameObj.player.walkEffect();
-})
+});

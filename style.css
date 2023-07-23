@@ -4,7 +4,7 @@ body {
     align-items: center;
     text-align: center;
     margin: 0;
-    background-image: url("../images/backgroundgame.jpg");
+    background-image: url("../images/backgroundBody.jpg");
     background-position: center;
     background-size: cover;
   }
@@ -15,16 +15,23 @@ body {
     border-radius: 20px;
  }
 
-#btn-start, #btn-restart {
+ #btn-start {
+  background-image: url("./images/backgroundstart2.jpg");
+  border-radius: 50px;
+  border: 10px;
+  border-style: dashed;
+  border-color: rgb(0, 0, 0);
+  
+ }
+
+/* #btn-start, #btn-restart {
     background-color: rgb(255, 255, 255);
     color: rgb(3, 3, 3);
     padding: 20px;
     font-size: 20px;
     margin-top: 40px;
     position: absolute;+
-
-    
-  }
+  } */
   .container {
     display: flex;
     flex-direction: column;

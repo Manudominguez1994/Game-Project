@@ -6,8 +6,8 @@ class Hero {
 
     this.x = 400;
     this.y = 550;
-    this.w = 40;
-    this.h = 40;
+    this.w = 45;
+    this.h = 45;
     this.movementHero = 66.6;
 
     this.playerNode.style.width = `${this.w}px`;
