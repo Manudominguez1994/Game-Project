@@ -1,30 +1,31 @@
 class Enemies {
-  constructor(positionY) {
+  constructor(positionY,enemyType , enemyWidth, enemyHeight, enemySrc) {
 
     this.enemyFlame = document.createElement("img");
-    this.enemyFlame.src = "./images/enemyflame.png";
     gameBoxNode.append(this.enemyFlame);
 
     
-    this.enemyFlamex = gameBoxNode.offsetWidth;
-    this.enemyFlamey = positionY;
-    this.enemyFlamew = 250;
-    this.enemyFlameh = 60;
-    this.enemyFlame.style.width = `${this.enemyFlamew}px`;
-    this.enemyFlame.style.height = `${this.enemyFlameh}px`;
-    this.enemyFlame.style.top = `${this.enemyFlamey}px`;
-    this.enemyFlame.style.left = `${this.enemyFlamex}px`;
-    // this.enemyFlame.style.right = `${this.enemyFlamex}px`;
-    this.enemyFlame.style.position = "absolute";
+    this.x = gameBoxNode.offsetWidth;
+    this.y = positionY;
+    this.enemyType = enemyType;
+    this.w = enemyWidth;
+    this.h = enemyHeight;
+    this.enemyFlame.src = enemySrc
+   
+  
   }
 
   automaticMovementEnemies = () =>{
-    this.enemyFlamex -=4;
+    this.x -=6;
     this.positionUpdateEnemies();
   }
 
-  positionUpdateEnemies = () =>{
-     this.enemyFlame.style.left = `${this.enemyFlamex}px`;
-    // this.enemyFlame.style.right = `${this.enemyFlamex}px`;
+  positionUpdateEnemies = () =>{ 
+  this.enemyFlame.style.width = `${this.w}px`;
+  this.enemyFlame.style.height = `${this.h}px`;
+  this.enemyFlame.style.top = `${this.y}px`;
+  this.enemyFlame.style.left = `${this.x}px`;
+  this.enemyFlame.style.position = "absolute";
+   
   }
 }

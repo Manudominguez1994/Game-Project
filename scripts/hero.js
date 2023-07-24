@@ -1,5 +1,6 @@
 class Hero {
   constructor() {
+    
     this.playerNode = document.createElement("img");
     this.playerNode.src = "./images/player.png";
     gameBoxNode.append(this.playerNode);
