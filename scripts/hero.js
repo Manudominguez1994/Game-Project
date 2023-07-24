@@ -21,21 +21,26 @@ class Hero {
   }
 
   walkEffect = () => {
-    if(this.x < 800 || this.x > 0 || this.y < 600 || this.y > 0){
-    if (event.key === "ArrowUp") {
+    
+    if (event.key === "ArrowUp" && this.y - this.movementHero > 0) {
       this.y -= this.movementHero;
-    } else if (event.key === "ArrowDown") {
+    }
+     if (event.key === "ArrowDown" && this.y + this.movementHero + this.h < 600) {
       this.y += this.movementHero;
-    } else if (event.key === "ArrowRight") {
+    }
+     if (event.key === "ArrowRight" && this.x + this.movementHero + this.w < 800) {
       this.x += this.movementHero;
-    } else if (event.key === "ArrowLeft") {
+    }
+     if (event.key === "ArrowLeft" && this.x - this.movementHero > 0 ) {
       this.x -= this.movementHero;
     }
-    this.movementHeroUpdate();
-  }else {this.movementHero = 0}
+    
+  this.movementHeroUpdate();
 }
+  
+
   movementHeroUpdate = () => {
-    // if(this.movimiento === true){
+   
     this.playerNode.style.top = `${this.y}px`;
     this.playerNode.style.left = `${this.x}px`;
   

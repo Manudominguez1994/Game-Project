@@ -62,9 +62,15 @@ class Game {
           src
         );
       }
-       //if(this.enemiesArr[this.enemiesArr.length - 1 ].x !== this.enemiesArr[newEnemies1].x ){
-        this.enemiesArr.push(newEnemies1)
-      //}
+      
+      this.enemiesArr.push(newEnemies1)
+      if(this.enemiesArr.length >= 2 ){
+        if(this.enemiesArr[this.enemiesArr.length -1 ].x === newEnemies1.x ){
+          newEnemies1.x += Math.floor(Math.random( )* 250)
+        }
+      }
+      
+    
     }
   };
 
@@ -105,6 +111,7 @@ class Game {
     this.player = null;
     this.cleanGame();
   };
+
   cleanGame = () => {
     let first = gameBoxNode.firstElementChild;
     while (first) {
