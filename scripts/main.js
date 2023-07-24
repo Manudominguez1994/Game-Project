@@ -20,17 +20,23 @@ function startGame() {
   gameObj.gameLoop();
 }
 
-// function restartGame() {
-//   startScreenNode.style.display = "flex";
-//   gameScreenNode.style.display = "none";
-// }
+ function restartGame() {
+  gameObj = null;
+  startScreenNode.style.display ="flex";
+  gameOverScreenNode.style.display ="none";
+ 
+ 
+ }
 
 //ADD EVENT LISTENERS
 
 //Accion en el boton de comenzar el juego
 startBtnNode.addEventListener("click", startGame);
 //Accion de restart del juego
-
+restartBtnNode.addEventListener("click",restartGame)
+//Movimiento del personaje
 document.addEventListener("keydown", (event) => {
   gameObj.player.walkEffect();
 });
+//Disparo del personaje
+

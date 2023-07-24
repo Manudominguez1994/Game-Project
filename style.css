@@ -15,23 +15,37 @@ body {
     border-radius: 20px;
  }
 
+ #gameover-screen{
+  background-image:url("./images/hell-background.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+ }
+
  #btn-start {
   background-image: url("./images/backgroundstart2.jpg");
   border-radius: 50px;
   border: 10px;
-  border-style: dashed;
-  border-color: rgb(0, 0, 0);
+  border-style: groove;
+  border-color: rgb(206, 91, 24);
+  position: relative;
+  top : 150px;
+  left : -200px
+
   
  }
 
-/* #btn-start, #btn-restart {
-    background-color: rgb(255, 255, 255);
-    color: rgb(3, 3, 3);
-    padding: 20px;
-    font-size: 20px;
-    margin-top: 40px;
-    position: absolute;+
-  } */
+ #btn-restart {
+  background-image: url("./images/backgroundstart2.jpg ");
+  border-radius: 50px;
+  border: 10px;
+  border-style: groove;
+  border-color: rgb(206, 91, 24);
+  position: relative;
+  top: 150px;
+  
+ }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -47,7 +61,7 @@ body {
     width:800px;
     height:600px;
     /* default settings for game box */
-     /* overflow: hidden;   */
+     /* overflow: hidden;    */
     /* this will prevent element from been visible outside the game box */
     position: relative; /* this will allow elements to be positioned relative to the game-box */
     user-select: none; /* this will prevent elements from being highlighted */
@@ -61,6 +75,14 @@ body {
     border-color: black;
    
   
+  }
+
+  .titulo {
+    width: 650px;
+    position: relative;
+    top: -150px;
+
+
   }
   
 #game-screen, #gameover-screen {
