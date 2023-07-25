@@ -16,7 +16,7 @@ class Enemies {
   }
 
   automaticMovementEnemies = () =>{
-    this.x -=10;
+    this.x -=5;
     this.positionUpdateEnemies();
   }
 
