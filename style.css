@@ -1,41 +1,46 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0;
-    background-image: url("../images/backgroundBody.jpg");
-    background-position: center;
-    background-size: cover;
-  }
- #start-screen{
-    background-image:url("../images/backgroundstart2.jpg");
-    background-position: center;
-    background-size: cover;
-    border-radius: 20px;
- }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  background-image: url("../images/backgroundBody.jpg");
+  background-position: center;
+  background-size: cover;
+}
+#start-screen {
+  background-image: url("../images/backgroundstart2.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
 
- #gameover-screen{
-  background-image:url("./images/hell-background.jpg");
-    background-position: center;
-    background-size: cover;
-    border-radius: 20px;
- }
+#gamewin-screen {
+  background-image: url("./images/hell-background.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
 
- #btn-start {
+#gameover-screen {
+  background-image: url("./images/hell-background.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+#btn-start {
   background-image: url("./images/backgroundstart2.jpg");
   border-radius: 50px;
   border: 10px;
   border-style: groove;
   border-color: rgb(206, 91, 24);
   position: relative;
-  top : 150px;
-  left : -200px
+  top: 150px;
+  left: -200px;
+}
 
-  
- }
-
- #btn-restart {
+#btn-restart {
   background-image: url("./images/backgroundstart2.jpg ");
   border-radius: 50px;
   border: 10px;
@@ -43,48 +48,54 @@ body {
   border-color: rgb(206, 91, 24);
   position: relative;
   top: 150px;
-  
- }
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
-    width: 800px; 
-    height:600px;
-  }
+#btn-restart-win {
+  background-image: url("./images/backgroundstart2.jpg ");
+  border-radius: 50px;
+  border: 10px;
+  border-style: groove;
+  border-color: rgb(206, 91, 24);
+  position: relative;
+  top: 150px;
+}
 
-  #game-box {
-    
-    width:800px;
-    height:600px;
-    /* default settings for game box */
-     /* overflow: hidden;     */
-    /* this will prevent element from been visible outside the game box */
-    position: relative; /* this will allow elements to be positioned relative to the game-box */
-    user-select: none; /* this will prevent elements from being highlighted */
-  
-    /*si el fondo no se va a mover si hace directamente en css, si el fondo se fuese a mover seria mejor añadirlo por medio de manipulacion de DOM*/
-    background-image: url("../images/backgroundgamebox.png") ;
-    background-position: center;
-    background-size: cover;
-    
-    border-radius: 20px;
-    border-color: black;
-   
-  
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  width: 800px;
+  height: 600px;
+}
 
-  .titulo {
-    width: 650px;
-    position: relative;
-    top: -150px;
+#game-box {
+  width: 800px;
+  height: 600px;
+  /* default settings for game box */
+   overflow: hidden;   
+  /* this will prevent element from been visible outside the game box */
+  position: relative; /* this will allow elements to be positioned relative to the game-box */
+  user-select: none; /* this will prevent elements from being highlighted */
 
+  /*si el fondo no se va a mover si hace directamente en css, si el fondo se fuese a mover seria mejor añadirlo por medio de manipulacion de DOM*/
+  background-image: url("../images/backgroundgamebox.png");
+  background-position: center;
+  background-size: cover;
 
-  }
-  
-#game-screen, #gameover-screen {
-    display: none;
+  border-radius: 20px;
+  border-color: black;
+}
+
+.titulo {
+  width: 650px;
+  position: relative;
+  top: -150px;
+}
+
+#game-screen,
+#gameover-screen,
+#gamewin-screen {
+  display: none;
 }

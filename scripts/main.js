@@ -2,11 +2,13 @@
 
 const startBtnNode = document.querySelector("#btn-start");
 const restartBtnNode = document.querySelector("#btn-restart");
+const restartBtnWinNode = document.querySelector("#btn-restart-win");
 
 const startScreenNode = document.querySelector("#start-screen");
 const gameScreenNode = document.querySelector("#game-screen");
 const gameOverScreenNode = document.querySelector("#gameover-screen");
 const gameBoxNode = document.querySelector("#game-box");
+const gameWinScreenNode = document.querySelector("#gamewin-screen")
 
 let gameObj = null;
 
@@ -15,17 +17,17 @@ let gameObj = null;
 function startGame() {
   startScreenNode.style.display = "none";
   gameScreenNode.style.display = "flex";
+  gameWinScreenNode.style.display = "none"
 
   gameObj = new Game();
-  gameObj.gameLoop();
+  gameObj.gamePlay();
 }
 
  function restartGame() {
   gameObj = null;
   startScreenNode.style.display ="flex";
   gameOverScreenNode.style.display ="none";
- 
- 
+  gameWinScreenNode.style.display = "none";
  }
 
 //ADD EVENT LISTENERS
@@ -34,9 +36,10 @@ function startGame() {
 startBtnNode.addEventListener("click", startGame);
 //Accion de restart del juego
 restartBtnNode.addEventListener("click",restartGame)
+restartBtnWinNode.addEventListener("click",restartGame)
 //Movimiento del personaje
 document.addEventListener("keydown", (event) => {
   gameObj.player.walkEffect();
 });
-//Disparo del personaje
+
 

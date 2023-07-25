@@ -7,6 +7,9 @@ class Game {
     this.enemiesArr = [];
     this.frames = 0;
     this.gameOn = true;
+    this.doorExit = new Exitwin();
+    this.interval = null;
+    
   }
 
   enemiesSpawn = () => {
@@ -58,7 +61,7 @@ class Game {
           height,
           src
         );
-        this.enemiesArr.push.apply(newEnemies1)
+        
       }
 
       this.enemiesArr.push(newEnemies1);
@@ -79,26 +82,26 @@ class Game {
   };
 
   fireLineSpawn = () => {
-    let i = 1;
-    let width = 0;
-    let height = 0;
-    let src = "";
-    let positonY = 0;
-    const interval = setInterval(function () {
-      i++;
-      console.log("hola");
-      width = 60;
-      height = 60;
-      src = "./images/fire-line.png";
-      positonY = -20;
-      newEnemies1 = new Enemies(positonY, randomEnemy, width, height, src);
-      this.enemiesArr.push(newEnemies1);
-      if (i > 10) {
-        clearInterval(interval);
-      }
-    }, 1000);
+    
+    let width = 60;
+    let height = 60;
+    let src = "./images/fire-line.png";
+    let positonY = -30;
+    let randomEnemy = "fireline"
+    newEnemies1 = new Enemies(positonY, randomEnemy, width, height, src);
+      
   };
+  
+  interval10Sec = () =>{
+    
+   this.interval =  setInterval(() => {
+      fireLineSpawn()
+      setTimeout()
+    }, 10000);
 
+
+  }
+ 
   colisionHeroEnemy = () => {
     this.enemiesArr.forEach((obstaculo) => {
       if (
@@ -120,9 +123,35 @@ class Game {
       this.player.movimiento = false;
   };
 
+  colisionHeroWin = () => {
+  
+    if (
+      this.player.x < this.doorExit.x + this.doorExit.w &&
+      this.player.x + this.player.w > this.doorExit.x &&
+      this.player.y < this.doorExit.y + this.doorExit.h &&
+      this.player.y + this.player.h > this.doorExit.y
+    ) {
+      this.winGame();
+    }
+
+
+  }
+
+  winGame = () =>{ 
+    cancelAnimationFrame(this.gameLoop);
+    this.gameOn = false;
+    gameWinScreenNode.style.display = "flex"
+    gameScreenNode.style.display = "none";
+    gameOverScreenNode.style.display = "none";
+    this.enemiesArr = [];
+    this.player = null;
+    this.cleanGame();
+  }
+
   gameOver = () => {
     cancelAnimationFrame(this.gameLoop);
     this.gameOn = false;
+    
     gameScreenNode.style.display = "none";
     gameOverScreenNode.style.display = "flex";
     this.enemiesArr = [];
@@ -140,12 +169,21 @@ class Game {
 
   gameLoop = () => {
     this.frames++;
+    
     this.colisionHeroEnemy();
     this.enemiesSpawn();
+    this.colisionHeroWin();
     this.enemiesArr.forEach((eachEnemy) => {
       eachEnemy.automaticMovementEnemies();
     })
     this.enemeisDespawn();
     requestAnimationFrame(this.gameLoop);
   };
-}
+
+  gamePlay = () =>{
+
+    this.gameLoop();
+    this.fireLineSpawn ();
+    
+}}
+  
