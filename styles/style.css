@@ -88,10 +88,15 @@ body {
   border-color: black;
 }
 
-.titulo {
+.titulo-gameover {
   width: 650px;
   position: relative;
-  top: -150px;
+  top: -100px;
+}
+.titulo-start {
+  width: 700px;
+  position: relative;
+  top: -100px;
 }
 
 #game-screen,

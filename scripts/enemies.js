@@ -11,6 +11,7 @@ class Enemies {
     this.w = enemyWidth;
     this.h = enemyHeight;
     this.enemyFlame.src = enemySrc
+    this.colisionComprobacion = true;
 
     this.enemyFlame.style.width = `${this.w}px`;
     this.enemyFlame.style.height = `${this.h}px`;
@@ -27,17 +28,16 @@ class Enemies {
   }
 
   positionUpdateEnemies = () =>{ 
-  
-  this.enemyFlame.style.top = `${this.y}px`;
-  this.enemyFlame.style.left = `${this.x}px`;
-  this.enemyFlame.style.position = "absolute";
-  }
+    this.enemyFlame.style.top = `${this.y}px`;
+    this.enemyFlame.style.left = `${this.x}px`;
+    this.enemyFlame.style.position = "absolute";
+    }
 
   removedEnemy = () =>{
     setTimeout(()=>{
       this.enemyFlame.remove();
       this.enemyFlame = gameBoxNode.firstElementChild;
-    
+      this.colisionComprobacion = false;
   },2000)
   }
   }
