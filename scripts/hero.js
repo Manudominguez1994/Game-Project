@@ -1,6 +1,5 @@
 class Hero {
   constructor() {
-
     this.playerNode = document.createElement("img");
     this.playerNode.src = "./images/player.png";
     gameBoxNode.append(this.playerNode);
@@ -17,43 +16,40 @@ class Hero {
     this.playerNode.style.position = "absolute";
     this.playerNode.style.top = `${this.y}px`;
     this.playerNode.style.left = `${this.x}px`;
-    
   }
 
   walkEffect = () => {
-    
     if (event.key === "ArrowUp" && this.y - this.movementHero > 0) {
       this.y -= this.movementHero;
     }
-     if (event.key === "ArrowDown" && this.y + this.movementHero + this.h < 600) {
+    if (
+      event.key === "ArrowDown" &&
+      this.y + this.movementHero + this.h < 600
+    ) {
       this.y += this.movementHero;
     }
-     if (event.key === "ArrowRight" && this.x + this.movementHero + this.w < 800) {
+    if (
+      event.key === "ArrowRight" &&
+      this.x + this.movementHero + this.w < 800
+    ) {
       this.x += this.movementHero;
     }
-     if (event.key === "ArrowLeft" && this.x - this.movementHero > 0 ) {
+    if (event.key === "ArrowLeft" && this.x - this.movementHero > 0) {
       this.x -= this.movementHero;
     }
-    
-  this.movementHeroUpdate();
-}
-  
+
+    this.movementHeroUpdate();
+  };
 
   movementHeroUpdate = () => {
-   
     this.playerNode.style.top = `${this.y}px`;
     this.playerNode.style.left = `${this.x}px`;
-  
-}
+  };
 
-  colisionMovimiento = () =>{
+  colisionMovimiento = () => {
     this.x = 400;
     this.y = 550;
     this.playerNode.style.top = `${this.y}px`;
     this.playerNode.style.left = `${this.x}px`;
-
-  }
-  
+  };
 }
-
- 

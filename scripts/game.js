@@ -8,6 +8,7 @@ class Game {
     this.frames = 0;
     this.gameOn = true;
     this.doorExit = new Exitwin();
+    this.shootFlower = null;
     this.interval = null;
     this.newEnemyLine = null;
 
@@ -51,6 +52,13 @@ class Game {
       this.vidasArr.splice(1, 0);
     }
   };
+
+  createShootFlower = () =>{
+    let x = this.newEnemies1.x;
+    let y = this.newEnemies1.y;
+    this.shootFlower = new Shoot(x, y)
+  
+  }
 
   enemiesSpawn = () => {
     let width = 0;
@@ -153,15 +161,22 @@ class Game {
   };
 
   colisionHeroFlameLine = () => {
-    if (this.newEnemyLine.colisionComprobacion === true) {
-      if (
-        this.player.x < this.newEnemyLine.x + this.newEnemyLine.w &&
-        this.player.x + this.player.w > this.newEnemyLine.x &&
-        this.player.y < this.newEnemyLine.y + this.newEnemyLine.h &&
-        this.player.y + this.player.h > this.newEnemyLine.y
-      ) {
-        this.gameOver();
+    if (this.countColision <= 3 && this.countColision > 0) {
+      if (this.newEnemyLine.colisionComprobacion === true) {
+        if (
+          this.player.x < this.newEnemyLine.x + this.newEnemyLine.w &&
+          this.player.x + this.player.w > this.newEnemyLine.x &&
+          this.player.y < this.newEnemyLine.y + this.newEnemyLine.h &&
+          this.player.y + this.player.h > this.newEnemyLine.y
+        ) {
+          // this.gameOver();
+          this.countColision--;
+          this.player.colisionMovimiento();
+          this.removeVidas();
+        }
       }
+    } else if (this.countColision === 0) {
+      this.gameOver();
     }
   };
 
@@ -236,6 +251,7 @@ class Game {
 
   gameLoop = () => {
     this.frames++;
+   // this.shootFlower.automaticMovementShootFlower();
     this.enemiesSpawn();
     if (this.newEnemyLine) {
       this.colisionHeroFlameLine();

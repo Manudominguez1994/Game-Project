@@ -1,6 +1,5 @@
-class Exitwin{
-constructor(){
-    
+class Exitwin {
+  constructor() {
     this.exitNode = document.createElement("img");
     this.exitNode.src = "./images/player.png";
     gameBoxNode.append(this.exitNode);
@@ -15,9 +14,5 @@ constructor(){
     this.exitNode.style.position = "absolute";
     this.exitNode.style.top = `${this.y}px`;
     this.exitNode.style.left = `${this.x}px`;
-
-}
-
-
-
+  }
 }
