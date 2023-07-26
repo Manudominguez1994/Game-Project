@@ -10,44 +10,47 @@ class Game {
     this.doorExit = new Exitwin();
     this.interval = null;
     this.newEnemyLine = null;
+
     this.vidasArr = [];
-    this.newvida = null;
+    this.newVida1 = null;
+    this.newVida2 = null;
+    this.newVida3 = null;
     this.vidaremove = false;
-    
+
+    this.countColision = 3;
   }
 
-  creacionVidas = () =>{
+  creacionVidas = () => {
     let x = 0;
     let y = 0;
-    let w = 0;
-    let h = 0;
-    let newvida = null;
+
     x = 20;
     y = 6;
-    w = 52;
-    h = 52;
-    newvida = new Vida(x, y, w, h)
-    this.vidasArr.push(newvida)
+    this.newVida1 = new Vida(x, y);
+    this.vidasArr.push(this.newVida1);
     x = 80;
     y = 6;
-    w = 52;
-    h = 52;
-    newvida = new Vida(x, y, w, h)
-    this.vidasArr.push(newvida)
+    this.newVida2 = new Vida(x, y);
+    this.vidasArr.push(this.newVida2);
     x = 140;
     y = 6;
-    w = 52;
-    h = 52;
-    newvida = new Vida(x, y, w, h)
-    this.vidasArr.push(newvida)
+    this.newVida3 = new Vida(x, y);
+    this.vidasArr.push(this.newVida3);
     console.log(this.vidasArr);
-  }
+  };
 
-  removeVidas = () =>{
-    
-    this.vidasArr.shift(this.newvida)
-    console.log("removevidas");
-  }
+  removeVidas = () => {
+    if (this.countColision === 3) {
+      this.newVida1.removeVidaNode();
+      this.vidasArr.splice(1, 2);
+    } else if (this.countColision === 2) {
+      this.newVida3.removeVidaNode();
+      this.vidasArr.splice(1, 1);
+    } else if (this.countColision === 1) {
+      this.newVida2.removeVidaNode();
+      this.vidasArr.splice(1, 0);
+    }
+  };
 
   enemiesSpawn = () => {
     let width = 0;
@@ -157,24 +160,29 @@ class Game {
         this.player.y < this.newEnemyLine.y + this.newEnemyLine.h &&
         this.player.y + this.player.h > this.newEnemyLine.y
       ) {
-        console.log("colisiona");
         this.gameOver();
       }
     }
   };
 
   colisionHeroEnemy = () => {
-    this.enemiesArr.forEach((obstaculo) => {
-      if (
-        this.player.x < obstaculo.x + obstaculo.w &&
-        this.player.x + this.player.w > obstaculo.x &&
-        this.player.y < obstaculo.y + obstaculo.h &&
-        this.player.y + this.player.h > obstaculo.y
-      ) {
-        this.removeVidas();
-        this.gameOver();
-      }
-    });
+    if (this.countColision <= 3 && this.countColision > 0) {
+      this.enemiesArr.forEach((obstaculo) => {
+        if (
+          this.player.x < obstaculo.x + obstaculo.w &&
+          this.player.x + this.player.w > obstaculo.x &&
+          this.player.y < obstaculo.y + obstaculo.h &&
+          this.player.y + this.player.h > obstaculo.y
+        ) {
+          this.countColision--;
+          this.player.colisionMovimiento();
+          obstaculo.removeOneEnemy();
+          this.removeVidas();
+        }
+      });
+    } else if (this.countColision === 0) {
+      this.gameOver();
+    }
   };
 
   colisionGameBox = () => {
@@ -242,9 +250,8 @@ class Game {
   };
 
   gamePlay = () => {
-    
+    this.creacionVidas();
     this.interval10Sec();
     this.gameLoop();
-    this.creacionVidas();
   };
 }

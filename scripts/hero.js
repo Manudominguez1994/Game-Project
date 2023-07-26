@@ -45,6 +45,14 @@ class Hero {
     this.playerNode.style.left = `${this.x}px`;
   
 }
+
+  colisionMovimiento = () =>{
+    this.x = 400;
+    this.y = 550;
+    this.playerNode.style.top = `${this.y}px`;
+    this.playerNode.style.left = `${this.x}px`;
+
+  }
   
 }
 

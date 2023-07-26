@@ -33,6 +33,9 @@ class Enemies {
     this.enemyFlame.style.position = "absolute";
     }
 
+  removeOneEnemy = () =>{
+      this.enemyFlame.remove();
+    }
   removedEnemy = () =>{
     setTimeout(()=>{
       this.enemyFlame.remove();

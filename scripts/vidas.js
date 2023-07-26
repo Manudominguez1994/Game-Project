@@ -1,5 +1,5 @@
 class Vida {
-    constructor(positionX, positionY, width, height){
+    constructor(positionX, positionY){
             
             this.numVidaNode = document.createElement("img");
             this.numVidaNode.src = "./images/corazoncalavera.png";
@@ -7,8 +7,8 @@ class Vida {
         
             this.x = positionX;
             this.y = positionY;
-            this.w = width;
-            this.h = height;
+            this.w = 52;
+            this.h = 52;
         
             this.numVidaNode.style.width = `${this.w}px`;
             this.numVidaNode.style.height = `${this.h}px`;
@@ -19,5 +19,9 @@ class Vida {
         }
     
     
-    
+        removeVidaNode = () =>{
+              this.numVidaNode.remove();
+              this.numVidaNode = gameBoxNode.firstElementChild;
+              
+          }
     }
