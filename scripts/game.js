@@ -10,6 +10,43 @@ class Game {
     this.doorExit = new Exitwin();
     this.interval = null;
     this.newEnemyLine = null;
+    this.vidasArr = [];
+    this.newvida = null;
+    this.vidaremove = false;
+    
+  }
+
+  creacionVidas = () =>{
+    let x = 0;
+    let y = 0;
+    let w = 0;
+    let h = 0;
+    let newvida = null;
+    x = 20;
+    y = 6;
+    w = 52;
+    h = 52;
+    newvida = new Vida(x, y, w, h)
+    this.vidasArr.push(newvida)
+    x = 80;
+    y = 6;
+    w = 52;
+    h = 52;
+    newvida = new Vida(x, y, w, h)
+    this.vidasArr.push(newvida)
+    x = 140;
+    y = 6;
+    w = 52;
+    h = 52;
+    newvida = new Vida(x, y, w, h)
+    this.vidasArr.push(newvida)
+    console.log(this.vidasArr);
+  }
+
+  removeVidas = () =>{
+    
+    this.vidasArr.shift(this.newvida)
+    console.log("removevidas");
   }
 
   enemiesSpawn = () => {
@@ -134,6 +171,7 @@ class Game {
         this.player.y < obstaculo.y + obstaculo.h &&
         this.player.y + this.player.h > obstaculo.y
       ) {
+        this.removeVidas();
         this.gameOver();
       }
     });
@@ -172,7 +210,6 @@ class Game {
   gameOver = () => {
     cancelAnimationFrame(this.gameLoop);
     this.gameOn = false;
-
     gameScreenNode.style.display = "none";
     gameOverScreenNode.style.display = "flex";
     this.enemiesArr = [];
@@ -205,7 +242,9 @@ class Game {
   };
 
   gamePlay = () => {
+    
     this.interval10Sec();
     this.gameLoop();
+    this.creacionVidas();
   };
 }
