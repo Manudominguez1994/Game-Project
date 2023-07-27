@@ -1,5 +1,6 @@
 class Shoot {
   constructor(x,y) {
+    
     this.shootNode = document.createElement("img");
     this.shootNode.src = "./images/boladefuego.png";
     gameBoxNode.append(this.shootNode);
@@ -16,7 +17,8 @@ class Shoot {
     this.shootNode.style.left = `${this.x}px`;
   }
   automaticMovementShootFlower = () => {
-    this.x -= 5;
+    this.x -=3;
+    this.y -=5;
     this.  positionUpdateShootFlower();
   };
 

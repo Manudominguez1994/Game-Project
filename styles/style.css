@@ -74,7 +74,7 @@ body {
   width: 800px;
   height: 600px;
   /* default settings for game box */
-   overflow: hidden;  
+   /* overflow: hidden;   */
   /* this will prevent element from been visible outside the game box */
   position: relative; /* this will allow elements to be positioned relative to the game-box */
   user-select: none; /* this will prevent elements from being highlighted */

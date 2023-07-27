@@ -1,8 +1,8 @@
-const positionYArr = [80, 146, 212, 336, 409, 470];
-const enemiesArrType = ["flame", "flower", "mushrrom"];
-
 class Game {
   constructor() {
+    this.positionYArr = [80, 146, 212, 336, 409, 470];
+    this.enemiesArrType = ["flame", "flower", "mushrrom"];
+
     this.player = new Hero();
     this.enemiesArr = [];
     this.frames = 0;
@@ -12,119 +12,41 @@ class Game {
     this.interval = null;
     this.newEnemyLine = null;
 
-    this.vidasArr = [];
-    this.newVida1 = null;
-    this.newVida2 = null;
-    this.newVida3 = null;
+    this.newVida1 = new Vida(20)
+    this.newVida2 = new Vida(70)
+    this.newVida3 = new Vida(120)
     this.vidaremove = false;
-
     this.countColision = 3;
+
   }
-
-  creacionVidas = () => {
-    let x = 0;
-    let y = 0;
-
-    x = 20;
-    y = 6;
-    this.newVida1 = new Vida(x, y);
-    this.vidasArr.push(this.newVida1);
-    x = 80;
-    y = 6;
-    this.newVida2 = new Vida(x, y);
-    this.vidasArr.push(this.newVida2);
-    x = 140;
-    y = 6;
-    this.newVida3 = new Vida(x, y);
-    this.vidasArr.push(this.newVida3);
-    console.log(this.vidasArr);
-  };
 
   removeVidas = () => {
     if (this.countColision === 3) {
       this.newVida1.removeVidaNode();
-      this.vidasArr.splice(1, 2);
     } else if (this.countColision === 2) {
       this.newVida3.removeVidaNode();
-      this.vidasArr.splice(1, 1);
     } else if (this.countColision === 1) {
       this.newVida2.removeVidaNode();
-      this.vidasArr.splice(1, 0);
     }
   };
 
-  createShootFlower = () =>{
-    let x = this.newEnemies1.x;
-    let y = this.newEnemies1.y;
-    this.shootFlower = new Shoot(x, y)
-  
-  }
-
   enemiesSpawn = () => {
-    let width = 0;
-    let height = 0;
-    let src = "";
-    let randomPosition = 0;
-    let positionX = 0;
-    let newEnemies1;
-    if (this.enemiesArr.length === 0 || this.frames % 15 === 0) {
-      let randomEnemy =
-        enemiesArrType[Math.floor(Math.random() * enemiesArrType.length)];
-
-      if (randomEnemy === "flame") {
-        positionX = gameBoxNode.offsetWidth;
-        width = 150;
-        height = 60;
-        src = "./images/enemyflame.png";
-        randomPosition =
-          positionYArr[Math.floor(Math.random() * positionYArr.length)];
-        newEnemies1 = new Enemies(
-          randomPosition,
-          positionX,
-          randomEnemy,
-          width,
-          height,
-          src
-        );
-      } else if (randomEnemy === "flower") {
-        positionX = gameBoxNode.offsetWidth;
-        width = 60;
-        height = 60;
-        src = "./images/flower-fire.png";
-        randomPosition =
-          positionYArr[Math.floor(Math.random() * positionYArr.length)];
-        newEnemies1 = new Enemies(
-          randomPosition,
-          positionX,
-          randomEnemy,
-          width,
-          height,
-          src
-        );
-      } else if (randomEnemy === "mushrrom") {
-        positionX = gameBoxNode.offsetWidth;
-        width = 60;
-        height = 60;
-        src = "./images/mushrrom-fire.png";
-        randomPosition =
-          positionYArr[Math.floor(Math.random() * positionYArr.length)];
-        newEnemies1 = new Enemies(
-          randomPosition,
-          positionX,
-          randomEnemy,
-          width,
-          height,
-          src
-        );
-      }
-
-      this.enemiesArr.push(newEnemies1);
-      // if(this.enemiesArr.length >= 2 ){
-      //  if(this.enemiesArr[this.enemiesArr.length -1 ].x === newEnemies1.x + newEnemies1.w){
-      //   newEnemies1.x += Math.floor(Math.random( )* 250)
-      // }
-      //  this.enemiesArr.push(newEnemies1);
-      // }
+    this.ramdomEnemy =
+      this.enemiesArrType[
+        Math.floor(Math.random() * this.enemiesArrType.length)
+      ];
+    this.positionY =
+      this.positionYArr[Math.floor(Math.random() * this.positionYArr.length)];
+    if (this.enemiesArr.length === 0 || this.frames % 10 === 0) {
+      this.newEnemy = new Enemy(
+        this.x,
+        this.ramdomEnemy,
+        this.positionY,
+        this.w,
+        this.h,
+        this.src
+      );
+      this.enemiesArr.push(this.newEnemy);
     }
   };
 
@@ -136,20 +58,16 @@ class Game {
   };
 
   fireLineSpawn = () => {
-    let positionY = 270;
-    let positionX = 0;
-    let randomEnemy = "fireline";
-    let width = 800;
-    let height = 60;
-    let src = "./images/fire-line.png";
-    this.newEnemyLine = new Enemies(
-      positionY,
-      positionX,
-      randomEnemy,
-      width,
-      height,
-      src
+    this.type = "fireline";
+    this.newEnemyLine = new Enemy(
+      this.x,
+      this.type,
+      this.positionY,
+      this.w,
+      this.h,
+      this.src
     );
+    
   };
 
   interval10Sec = () => {
@@ -157,7 +75,7 @@ class Game {
       this.fireLineSpawn();
       this.newEnemyLine.removedEnemy();
       this.newEnemyLine.colisionComprobacion = true;
-    }, 8000);
+    }, 6000);
   };
 
   colisionHeroFlameLine = () => {
@@ -182,7 +100,7 @@ class Game {
 
   colisionHeroEnemy = () => {
     if (this.countColision <= 3 && this.countColision > 0) {
-      this.enemiesArr.forEach((obstaculo) => {
+      this.enemiesArr.forEach((obstaculo, index) => {
         if (
           this.player.x < obstaculo.x + obstaculo.w &&
           this.player.x + this.player.w > obstaculo.x &&
@@ -192,6 +110,7 @@ class Game {
           this.countColision--;
           this.player.colisionMovimiento();
           obstaculo.removeOneEnemy();
+          this.enemiesArr.splice(index, 1);
           this.removeVidas();
         }
       });
@@ -251,22 +170,25 @@ class Game {
 
   gameLoop = () => {
     this.frames++;
-   // this.shootFlower.automaticMovementShootFlower();
+
     this.enemiesSpawn();
+
     if (this.newEnemyLine) {
       this.colisionHeroFlameLine();
     }
+
     this.colisionHeroEnemy();
     this.colisionHeroWin();
+
     this.enemiesArr.forEach((eachEnemy) => {
       eachEnemy.automaticMovementEnemies();
     });
+
     this.enemeisDespawn();
     requestAnimationFrame(this.gameLoop);
   };
 
   gamePlay = () => {
-    this.creacionVidas();
     this.interval10Sec();
     this.gameLoop();
   };
