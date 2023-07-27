@@ -6,8 +6,8 @@ class Hero {
 
     this.x = 400;
     this.y = 550;
-    this.w = 45;
-    this.h = 45;
+    this.w = 50;
+    this.h = 50;
     this.movementHero = 66.6;
     this.movimiento = true;
 
@@ -24,7 +24,7 @@ class Hero {
     }
     if (
       event.key === "ArrowDown" &&
-      this.y + this.movementHero + this.h < 600
+      this.y + this.movementHero + this.h <= 600
     ) {
       this.y += this.movementHero;
     }

@@ -36,7 +36,7 @@ body {
   border-style: groove;
   border-color: rgb(206, 91, 24);
   position: relative;
-  top: 150px;
+  top: 130px;
   left: -200px;
 }
 
@@ -57,7 +57,7 @@ body {
   border-style: groove;
   border-color: rgb(206, 91, 24);
   position: relative;
-  top: 150px;
+  top: 130px;
 }
 
 .container {
@@ -95,6 +95,7 @@ body {
 }
 .titulo-start {
   width: 700px;
+  height: 180px;
   position: relative;
   top: -100px;
 }
