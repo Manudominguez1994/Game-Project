@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this.positionYArr = [80, 146, 212, 336, 409, 470];
     this.enemiesArrType = ["flame", "flower", "mushrrom"];
+    
 
     this.player = new Hero();
     this.enemiesArr = [];
@@ -17,6 +18,18 @@ class Game {
     this.newVida3 = new Vida(120)
     this.vidaremove = false;
     this.countColision = 3;
+
+    this.principalMusic = new Audio('./audio/OutOfHell.mp3');
+    this.principalMusic.volume = 0.1;
+    this.flameLineSound = new Audio('./audio/flamelinesound.wav')
+    this.flameLineSound.volume = 0.1;
+    this.gameOverSound = new Audio('./audio/gameover.wav');
+    this.gameOverSound.volume = 0.1;
+    this.winSound = new Audio('./audio/wingame.wav');
+    this.winSound.volume = 0.1;
+
+    this.principalMusic.play();
+    
 
   }
 
@@ -57,24 +70,21 @@ class Game {
     }
   };
 
-  fireLineSpawn = () => {
-    this.type = "fireline";
-    this.newEnemyLine = new Enemy(
-      this.x,
-      this.type,
-      this.positionY,
-      this.w,
-      this.h,
-      this.src
-    );
-    
-  };
-
   interval10Sec = () => {
     this.interval = setInterval(() => {
-      this.fireLineSpawn();
+      this.type = "fireline";
+      this.newEnemyLine = new Enemy(
+        0,
+        this.type,
+        270,
+        800,
+        60,
+        this.src
+      );
+      this.flameLineSound.play();
       this.newEnemyLine.removedEnemy();
       this.newEnemyLine.colisionComprobacion = true;
+      
     }, 6000);
   };
 
@@ -87,10 +97,11 @@ class Game {
           this.player.y < this.newEnemyLine.y + this.newEnemyLine.h &&
           this.player.y + this.player.h > this.newEnemyLine.y
         ) {
-          // this.gameOver();
+          
           this.countColision--;
           this.player.colisionMovimiento();
           this.removeVidas();
+          this.flameLineSound.pause();
         }
       }
     } else if (this.countColision === 0) {
@@ -112,6 +123,7 @@ class Game {
           obstaculo.removeOneEnemy();
           this.enemiesArr.splice(index, 1);
           this.removeVidas();
+          this.flameLineSound.pause();
         }
       });
     } else if (this.countColision === 0) {
@@ -135,6 +147,7 @@ class Game {
       this.player.y + this.player.h > this.doorExit.y
     ) {
       this.winGame();
+      this.flameLineSound.pause();
     }
   };
 
@@ -147,6 +160,10 @@ class Game {
     this.enemiesArr = [];
     this.player = null;
     this.cleanGame();
+    this.interval = clearInterval(this.interval);
+    this.winSound.play();
+    this.principalMusic.pause();
+    
   };
 
   gameOver = () => {
@@ -158,6 +175,9 @@ class Game {
     this.player = null;
     this.cleanGame();
     this.interval = clearInterval(this.interval);
+    this.gameOverSound.play();
+    this.principalMusic.pause();
+    
   };
 
   cleanGame = () => {
@@ -166,6 +186,7 @@ class Game {
       first.remove();
       first = gameBoxNode.firstElementChild;
     }
+    
   };
 
   gameLoop = () => {

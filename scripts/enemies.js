@@ -34,8 +34,8 @@ class Enemy {
       this.x = 0;
       this.y = 270;
       this.type = enemyType;
-      this.w =800;
-      this.h = 60;
+      this.w = w;
+      this.h = h;
       this.enemyFlame.src = "./images/fire-line.png";
     }
     
@@ -72,5 +72,6 @@ class Enemy {
       this.colisionComprobacion = false;
     }, 2000);
   };
+
 
 }
