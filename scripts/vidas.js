@@ -1,5 +1,5 @@
 class Vida {
-  constructor(positionX,) {
+  constructor(positionX) {
     this.numVidaNode = document.createElement("img");
     this.numVidaNode.src = "./images/llamavida.png";
     gameBoxNode.append(this.numVidaNode);

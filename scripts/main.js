@@ -12,7 +12,7 @@ const gameWinScreenNode = document.querySelector("#gamewin-screen");
 
 let gameObj = null;
 
-this.HeroMoveSound = new Audio('./audio/heromove.wav');
+this.HeroMoveSound = new Audio("./audio/heromove.wav");
 this.HeroMoveSound.volume = 0.1;
 
 //  STATE MANAGEMENT FUNCTIONS
@@ -42,5 +42,5 @@ restartBtnWinNode.addEventListener("click", restartGame);
 //Movimiento del personaje
 document.addEventListener("keydown", (event) => {
   gameObj.player.walkEffect();
-  this.HeroMoveSound.play()
+  this.HeroMoveSound.play();
 });

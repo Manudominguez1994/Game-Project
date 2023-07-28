@@ -1,36 +1,33 @@
 class Enemy {
-  constructor(x,enemyType, y, w, h, src) {
-
+  constructor(x, enemyType, y, w, h, src) {
     this.enemyFlame = document.createElement("img");
     gameBoxNode.append(this.enemyFlame);
 
     // this.x = gameBoxNode.offsetWidth;
     this.colisionComprobacion = true;
 
-
-
     if (enemyType === "flame") {
       this.x = gameBoxNode.offsetWidth;
-      this.y = y
+      this.y = y;
       this.type = enemyType;
       this.w = 150;
       this.h = 60;
       this.enemyFlame.src = "./images/enemyflame.png";
     } else if (enemyType === "flower") {
       this.x = gameBoxNode.offsetWidth;
-      this.y = y
+      this.y = y;
       this.type = enemyType;
       this.w = 60;
       this.h = 60;
       this.enemyFlame.src = "./images/flower-fire.png";
     } else if (enemyType === "mushrrom") {
       this.x = gameBoxNode.offsetWidth;
-      this.y =y
+      this.y = y;
       this.type = enemyType;
       this.w = 60;
       this.h = 60;
       this.enemyFlame.src = "./images/mushrrom-fire.png";
-    }else if (enemyType === "fireline") {
+    } else if (enemyType === "fireline") {
       this.x = 0;
       this.y = 270;
       this.type = enemyType;
@@ -38,8 +35,6 @@ class Enemy {
       this.h = h;
       this.enemyFlame.src = "./images/fire-line.png";
     }
-    
-    
 
     this.enemyFlame.style.width = `${this.w}px`;
     this.enemyFlame.style.height = `${this.h}px`;
@@ -72,6 +67,4 @@ class Enemy {
       this.colisionComprobacion = false;
     }, 2000);
   };
-
-
 }
